@@ -14,7 +14,7 @@ function findNearNeighbors() {
   var distance;
   for (i = 0 ; i < users.length ; i++) {
     if (users[i].userID != userID) {
-      distance = getDistanceFromLatLonInKm(userPos.lat, userPos.long, users[i].lat, user[i].long);
+      distance = getDistanceFromLatLonInKm(userPos.lat, userPos.long, users[i].lat, users[i].long);
     }
     else {
       distance = Infinity;
@@ -54,16 +54,16 @@ function findNearNeighbors() {
 
 function changeContent(c) {
   var color = "#000000"
-  if(c == "A") {
+  if(c == "Red") {
     color = "#FF0000";
   }
-  else if(c == "B") {
+  else if(c == "Green") {
     color = "#00FF00";
   }
   else {
     color = "#0000FF"
   }
-  $("body").css("background-color", color); 
+  $("body").css("background-color", color);
 }
 
 function min(a, b) {
@@ -87,4 +87,8 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = R * c; // Distance in km
   return d * 1000;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
 }

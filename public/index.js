@@ -15,12 +15,12 @@ function makeid() {
 }
 
 function getType() {
-    var type = "A";
+    var type = "Red";
     var rnd = Math.random(1);
     if (rnd < 0.3) {
-        type = "B";
+        type = "Green";
     } else if (rnd < 0.6) {
-        type = "C";
+        type = "Blue";
     }
     return type;
 }

@@ -1,12 +1,19 @@
 //WEB SERVER STUFF
+var https = require('https');
+var fs = require('fs');
+var credentials = {
+  key: fs.readFileSync('my-key.pem'),
+  cert: fs.readFileSync('my-cert.pem')
+};
+
 var express = require("express");
 var app = express();
-var server = app.listen(8000, function(){
-  console.log("listening on port 8000");
-});
+// var server = app.listen(8800, function(){
+//   console.log("listening on port 8800");
+// });
 app.use(express.static("public"));
 
-var fs = require('fs');
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -45,8 +52,10 @@ function updateLocationInfo(req, res) {
   }
 }
 
+var httpsServer = https.createServer(credentials, app);
 
-
+// Default HTTPS Port
+httpsServer.listen(443);
 
 
 /**/

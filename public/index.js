@@ -1,10 +1,11 @@
-var users, userID, userPos, userType;
+var userID, userPos, userType;
 
 $(document).ready(function() {
     userID = makeid();
     userType = getType();
     getPosition("new");
 })
+setInterval(getPosition, 10000);
 
 function makeid() {
     var text = "";
@@ -24,8 +25,6 @@ function getType() {
     }
     return type;
 }
-
-setInterval(getPosition, 10000);
 
 function getPosition(userStatus) {
     if (navigator.geolocation) {
@@ -47,8 +46,8 @@ function createNewUser() {
     var newUser = {
         "userID": userID,
         "type": userType,
-        "lat" : userPos.latitude,
-        "long" : userPos.longitude
+        "latitude" : userPos.latitude,
+        "longitude" : userPos.longitude
     }
     $.post('/saveNewUser', newUser);
 }
@@ -56,8 +55,8 @@ function createNewUser() {
 function updateLocationInfo() {
   var update = {
     'userID' : userID,
-    'lat' : userPos.latitude,
-    'long' : userPos.longitude
+    'latitude' : userPos.latitude,
+    'longitude' : userPos.longitude
   }
   $.post('/updateLocationInfo', update);
 }

@@ -27,12 +27,15 @@ function getUsers(request, response){
 app.post('/saveNewUser', saveNewUser);
 function saveNewUser(request, response) {
   var users = JSON.parse(fs.readFileSync("users.json"));
+  console.log("saving new user:");
+  console.log(request.body);
   users.push(request.body);
   fs.writeFileSync('users.json', JSON.stringify(users, null, 2));
 }
 
 app.post('/userLeft', userLeft);
 function userLeft(req, rep){
+  console.log("user left: " + req.body.userID);
   var users = JSON.parse(fs.readFileSync("users.json"));
   var index = users.indexOf(req.body.userID);
   users.splice(index, 1);
@@ -44,18 +47,17 @@ function updateLocationInfo(req, res) {
   var users = JSON.parse(fs.readFileSync("users.json"));
   for (i = 0 ; i < users.length ; i++) {
     if(users[i].userID == req.body.userID) {
-      console.log("updating geolocation");
-      users[i].lat = req.body.lat;
-      users[i].long = req.body.long;
+      users[i].latitude = req.body.latitude;
+      users[i].longitude = req.body.longitude;
       fs.writeFileSync('users.json', JSON.stringify(users, null, 2));
+      break;
     }
   }
 }
 
 var httpsServer = https.createServer(credentials, app);
-
 // Default HTTPS Port
 httpsServer.listen(443);
-
+console.log("server started");
 
 /**/

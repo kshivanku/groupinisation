@@ -1,12 +1,8 @@
 var userID, userType, latitude, longitude;
 var socket;
 
-$(document).ready(function() {
-    userType = getType();
-    updateUserData();
-})
-
 socket = io.connect('https://skf268.itp.io/');
+// socket = io.connect('http://localhost:8800');
 
 //receive from server and set sessionID as userID
 socket.on('sessionID', function(data) {
@@ -14,7 +10,34 @@ socket.on('sessionID', function(data) {
 });
 
 //update userData every second. watchPosition doesn't seem to be working :(
-setInterval(updateUserData, 4000);
+var interval = setInterval(updateUserData, 4000);
+
+$(document).ready(function() {
+
+    loadAudioFiles();
+
+    //don't register as user yet
+    clearInterval(interval);
+
+    //show selection page
+    $('#selection_page').css("display", "block");
+    $('#player_page').css("display", "none");
+
+    //once user makes his selection
+    $('li').click(function(){
+      //set user type
+      userType = $(this)[0].innerHTML;
+
+      //show player page
+      $('#selection_page').css("display", "none");
+      $('#player_page').css("display", "block");
+      $('#player_page h1').html(userType);
+
+      //register as user and start monitoring geolocation
+      interval = setInterval(updateUserData, 4000);
+    });
+})
+
 
 //randomly assign type
 function getType() {

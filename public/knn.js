@@ -37,7 +37,7 @@ function findNearNeighbors() {
   function byDistance(a, b){
     return a.distance - b.distance;
   }
-  console.log(neighbor);
+
   var knn = {};
   for (var j = 0; j < min(k, neighbor.length) ; j++) {
     var nb = neighbor[j];
@@ -61,18 +61,17 @@ function findNearNeighbors() {
   changeContent(classification);
 }
 
-function changeContent(col) {
-  var color = "#000000"
-  if(col == "Red") {
-    color = "#FF0000";
+function changeContent(c) {
+  var source = "";
+  if(c == "Hans Zimmer") {
+    source = "audio_files/hans.webm";
   }
-  else if(col == "Green") {
-    color = "#00FF00";
+  else if(c == "Beyonce") {
+    source = "audio_files/beyonce.webm";
   }
-  else {
-    color = "#0000FF"
+  if(source != $("#player").attr("src")){ //load the player only if the source changes
+    $("#player").attr("src", source);
   }
-  $("body").css("background-color", color);
 }
 
 function min(a, b) {

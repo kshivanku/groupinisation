@@ -25,7 +25,6 @@ var socket = require('socket.io');
 var io = socket(httpsServer);
 
 io.sockets.on('connection', function(socket){
-  console.log("connected: " + socket.id);
   io.sockets.connected[socket.id].emit('sessionID', socket.id); //send the sessionID back to client
 
   socket.on('userData', function(userData) {
@@ -42,14 +41,12 @@ io.sockets.on('connection', function(socket){
     if(!userFound && userData.userID) {  //New User
       var newUser = userData;
       users.push(newUser);
-      console.log(userData);
     }
     io.sockets.emit('allUsers', users);
     fs.writeFileSync('users.json', JSON.stringify(users, null, 2));
   })
 
   socket.on('disconnect', function(){
-    console.log("disconnected: " + socket.id);
     var users = JSON.parse(fs.readFileSync("users.json"));
     for (var i = 0 ; i < users.length ; i++) {
       if(users[i].userID == socket.id) {

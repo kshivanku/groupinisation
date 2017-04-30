@@ -1,20 +1,22 @@
-var userID, userPos, userType;
+var userID, userType, latitude, longitude;
+var socket;
 
 $(document).ready(function() {
-    userID = makeid();
     userType = getType();
-    getPosition("new");
+    updateUserData();
 })
-setInterval(getPosition, 10000);
 
-function makeid() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (var i = 0; i < 5; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    return text;
-}
+socket = io.connect('https://skf268.itp.io/');
 
+//receive from server and set sessionID as userID
+socket.on('sessionID', function(data) {
+  userID = data;
+});
+
+//update userData every second. watchPosition doesn't seem to be working :(
+setInterval(updateUserData, 4000);
+
+//randomly assign type
 function getType() {
     var type = "Red";
     var rnd = Math.random(1);
@@ -26,45 +28,20 @@ function getType() {
     return type;
 }
 
-function getPosition(userStatus) {
+function updateUserData() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            userPos = position.coords;
-            if(userStatus == "new") {
-              createNewUser();
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            var userData = {
+              "userID" : userID,
+              "userType": userType,
+              "latitude" : latitude,
+              "longitude" : longitude
             }
-            else {
-              updateLocationInfo();
-            }
+            socket.emit('userData', userData);
         });
     } else {
         console.log("no position value");
     }
 }
-
-function createNewUser() {
-    var newUser = {
-        "userID": userID,
-        "type": userType,
-        "latitude" : userPos.latitude,
-        "longitude" : userPos.longitude
-    }
-    $.post('/saveNewUser', newUser);
-}
-
-function updateLocationInfo() {
-  var update = {
-    'userID' : userID,
-    'latitude' : userPos.latitude,
-    'longitude' : userPos.longitude
-  }
-  $.post('/updateLocationInfo', update);
-}
-
-//CHECKING IF BROWSER TAB HAS BEEN CLOSED
-window.addEventListener('beforeunload', function(e) {
-  var userLeft = {
-    'userID' : userID
-  }
-  $.post('/userLeft', userLeft);
-}, false);

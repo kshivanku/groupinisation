@@ -1,6 +1,6 @@
 var users;
 var neighbor = [];
-var k = 1;
+var k = 10;
 
 //regularly gets all user data from socket
 socket.on('allUsers', function(allUserData) {

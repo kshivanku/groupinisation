@@ -1,27 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Groupinisation</title>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="load_audio.js"></script>
     <script type="text/javascript" src="knn.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="selection_page">
-      <h1>Select an artist you like</h1>
-      <ul>
-        <li>Hans Zimmer</li>
-        <li>Beyonce</li>
-      </ul>
+        <div class="container">
+            <h1>What kind of music do you like?</h1>
+            <p>Your neighbors will listen to your kinda music and you their</p>
+            <div id="choices">
+                <div id="pop" class="choice">
+                    <div class="fimage"></div>
+                    <p>Pop</p>
+                </div>
+                <div id="hiphop" class="choice">
+                    <div class="fimage"></div>
+                    <p>Hip Hop</p>
+                </div>
+                <div id="latino" class="choice">
+                    <div class="fimage"></div>
+                    <p>Latino</p>
+                </div>
+                <div id="edm" class="choice">
+                    <div class="fimage"></div>
+                    <p>Electronic/Dance</p>
+                </div>
+                <div id="kpop" class="choice">
+                    <div class="fimage"></div>
+                    <p>K-pop</p>
+                </div>
+                <div id="classical" class="choice">
+                    <div class="fimage"></div>
+                    <p>Classical</p>
+                </div>
+                <div id="jazz" class="choice">
+                    <div class="fimage"></div>
+                    <p>Jazz</p>
+                </div>
+                <div id="metal" class="choice">
+                    <div class="fimage"></div>
+                    <p>Metal</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="player_page">
-      <h1>Player</h1>
-      <audio id = "player" src="" controls autoplay loop = "true"></audio>
+        <div id="loading">
+            <h1></h1>
+            <p>Scanning neighborhood to play their music for you...</p>
+        </div>
+        <div id="playing">
+            <div id="transp_layer">
+                <div id="back">
+                    <p></p>
+                </div>
+                <p>Neighborhood Preference:</p>
+                <h1></h1>
+                <audio id="player" src="" controls autoplay loop="true" currentTime="12"></audio>
+            </div>
+        </div>
     </div>
-  </body>
+</body>
+
 </html>

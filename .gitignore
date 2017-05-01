@@ -2,3 +2,5 @@ node_modules
 my-cert.pem
 my-key.pem
 public/audio_files/
+public/images/
+public/reset.css

@@ -9,22 +9,23 @@ var credentials = {
 //Express App
 var express = require("express");
 var app = express();
-// var httpsServer = app.listen(8800, function(){
-//   console.log("listening on port 8800");
-// });
+var httpsServer = app.listen(8800, function(){
+  console.log("listening on port 8800");
+});
 app.use(express.static("public"));
 
 //HTTPS Server
-var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(443, function(){
-  console.log("server started");
-});
+// var httpsServer = https.createServer(credentials, app);
+// httpsServer.listen(443, function(){
+//   console.log("server started");
+// });
 
 //Web Socket
 var socket = require('socket.io');
 var io = socket(httpsServer);
 
 io.sockets.on('connection', function(socket){
+  console.log('connected: ' + socket.id);
   io.sockets.connected[socket.id].emit('sessionID', socket.id); //send the sessionID back to client
 
   socket.on('userData', function(userData) {
@@ -47,6 +48,7 @@ io.sockets.on('connection', function(socket){
   })
 
   socket.on('disconnect', function(){
+    console.log('disconnected: ' + socket.id);
     var users = JSON.parse(fs.readFileSync("users.json"));
     for (var i = 0 ; i < users.length ; i++) {
       if(users[i].userID == socket.id) {

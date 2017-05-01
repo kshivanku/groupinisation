@@ -1,6 +1,12 @@
 var audio_files = [
-  "audio_files/hans.webm",
-  "audio_files/beyonce.webm"
+  "audio_files/pop.webm",
+  "audio_files/hiphop.webm",
+  "audio_files/latino.webm",
+  "audio_files/edm.webm",
+  "audio_files/kpop.webm",
+  "audio_files/classical.webm",
+  "audio_files/jazz.webm",
+  "audio_files/metal.webm"
 ];
 
 function loadAudioFiles(){
@@ -14,7 +20,6 @@ function loadAudioFiles(){
 var loaded = 0;
 function loadedAudio(){
   loaded++;
-  console.log(loaded);
   if (loaded == audio_files.length) {
     console.log("all audio files loaded");
   }

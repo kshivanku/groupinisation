@@ -1,0 +1,151 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
+
+.container {
+  max-width: 640px;
+  margin: auto;
+}
+
+#selection_page h1 {
+  font-size: 28px;
+  margin: 40px 0px 20px 0px;
+  font-weight: 700;
+}
+
+#choices {
+  margin-top: 60px;
+}
+
+.choice {
+  float: left;
+  width: 33.33%;
+  padding: 0 15px;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+
+.fimage {
+  border-radius: 100%;
+  height: 120px;
+  width: 120px;
+  margin: auto;
+  margin-bottom: 20px;
+  background-position: center;
+  background-color: #212121;
+}
+
+#pop .fimage {
+  background-image: url('images/pop.gif');
+}
+#hiphop .fimage {
+  background-image: url('images/hiphop.gif');
+}
+#latino .fimage {
+  background-image: url('images/latino.gif');
+}
+#edm .fimage {
+  background-image: url('images/edm.gif');
+}
+#kpop .fimage {
+  background-image: url('images/kpop.gif');
+}
+#classical .fimage {
+  background-image: url('images/classical.gif');
+}
+#jazz .fimage {
+  background-image: url('images/jazz.gif');
+}
+#metal .fimage {
+  background-image: url('images/metal.gif');
+}
+
+#transp_layer {
+  background-color: rgba(24, 24, 24, 0.8);
+  height: 100vh;
+}
+
+audio {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+#loading h1 {
+  font-size: 32px;
+  padding: 30vh 20px 30px 20px;
+  line-height: 1.5em;
+}
+
+#playing{
+  height: 100vh;
+}
+
+#playing p {
+  padding: 30vh 20px 0px 20px;
+}
+
+#playing h1 {
+  font-size: 64px;
+  font-weight: 700;
+  padding: 0px;
+}
+
+#back p {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 0px;
+  line-height: 48px;
+  cursor: pointer;
+}
+
+#back p:hover , .choice:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  #selection_page h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  #selection_page p {
+    font-size: 12px;
+  }
+
+  #loading h1 {
+    font-size: 24px;
+  }
+
+  #playing h1 {
+    font-size: 64px;
+    font-weight: 700;
+    margin: 0px;
+  }
+
+  .choice {
+    width: 50%;
+  }
+}

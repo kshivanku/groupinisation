@@ -1,8 +1,8 @@
 var userID, userType, latitude, longitude;
 var socket;
 
-socket = io.connect('https://skf268.itp.io/');
-// socket = io.connect('http://localhost:8800');
+// socket = io.connect('https://skf268.itp.io/');
+socket = io.connect('http://localhost:8800');
 
 //receive from server and set sessionID as userID
 socket.on('sessionID', function(data) {
@@ -24,32 +24,32 @@ $(document).ready(function() {
     $('#player_page').css("display", "none");
 
     //once user makes his selection
-    $('li').click(function(){
+    $('.choice').click(function(){
+
       //set user type
-      userType = $(this)[0].innerHTML;
+      userType = $(this)[0].id;
 
       //show player page
       $('#selection_page').css("display", "none");
       $('#player_page').css("display", "block");
-      $('#player_page h1').html(userType);
+      $('#loading').css("display", "block");
+      $('#playing').css("display", "none");
+      $('#player_page h1').html("Great! People near you will listen to <span style='font-weight: 700'>" + userType + "</span>");
 
       //register as user and start monitoring geolocation
       interval = setInterval(updateUserData, 4000);
     });
+
+    $("#back p").click(function(){
+      // socket.disconnect();
+      // $('#selection_page').css("display", "block");
+      // $('#player_page').css("display", "none");
+      // $("#player").attr("src", "");
+      // clearInterval(interval);
+      // socket = io.connect('http://localhost:8800');
+      location.reload();
+    });
 })
-
-
-//randomly assign type
-function getType() {
-    var type = "Red";
-    var rnd = Math.random(1);
-    if (rnd < 0.3) {
-        type = "Green";
-    } else if (rnd < 0.6) {
-        type = "Blue";
-    }
-    return type;
-}
 
 function updateUserData() {
     if (navigator.geolocation) {

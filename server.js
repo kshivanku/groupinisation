@@ -9,16 +9,16 @@ var credentials = {
 //Express App
 var express = require("express");
 var app = express();
-var httpsServer = app.listen(8800, function(){
-  console.log("listening on port 8800");
-});
+// var httpsServer = app.listen(8800, function(){
+//   console.log("listening on port 8800");
+// });
 app.use(express.static("public"));
 
 //HTTPS Server
-// var httpsServer = https.createServer(credentials, app);
-// httpsServer.listen(443, function(){
-//   console.log("server started");
-// });
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(443, function(){
+  console.log("server started");
+});
 
 //Web Socket
 var socket = require('socket.io');

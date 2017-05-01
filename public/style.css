@@ -83,7 +83,7 @@ body {
 
 audio {
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left: 0px;
 }

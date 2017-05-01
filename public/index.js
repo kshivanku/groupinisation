@@ -1,8 +1,8 @@
 var userID, userType, latitude, longitude;
 var socket;
 
-// socket = io.connect('https://skf268.itp.io/');
-socket = io.connect('http://localhost:8800');
+socket = io.connect('https://skf268.itp.io/');
+// socket = io.connect('http://localhost:8800');
 
 //receive from server and set sessionID as userID
 socket.on('sessionID', function(data) {
@@ -41,12 +41,6 @@ $(document).ready(function() {
     });
 
     $("#back p").click(function(){
-      // socket.disconnect();
-      // $('#selection_page').css("display", "block");
-      // $('#player_page').css("display", "none");
-      // $("#player").attr("src", "");
-      // clearInterval(interval);
-      // socket = io.connect('http://localhost:8800');
       location.reload();
     });
 })

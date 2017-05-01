@@ -17,7 +17,9 @@ function findNearNeighbors() {
             var long1 = longitude;
             var lat2 = users[i].latitude;
             var long2 = users[i].longitude;
-            distance = getDistanceFromLatLonInM(lat1, long1, lat2, long2);
+            if(lat1 && long1 && lat2 && long2){
+              distance = getDistanceFromLatLonInM(lat1, long1, lat2, long2);
+            }
         } else {
             distance = Infinity;
         }

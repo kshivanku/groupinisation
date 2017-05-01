@@ -1,12 +1,12 @@
 var audio_files = [
-  "audio_files/pop.webm",
-  "audio_files/hiphop.webm",
-  "audio_files/latino.webm",
-  "audio_files/edm.webm",
-  "audio_files/kpop.webm",
-  "audio_files/classical.webm",
-  "audio_files/jazz.webm",
-  "audio_files/metal.webm"
+  "audio_files/pop.mp3",
+  "audio_files/hiphop.mp3",
+  "audio_files/latino.mp3",
+  "audio_files/edm.mp3",
+  "audio_files/kpop.mp3",
+  "audio_files/classical.mp3",
+  "audio_files/jazz.mp3",
+  "audio_files/metal.mp3"
 ];
 
 function loadAudioFiles(){

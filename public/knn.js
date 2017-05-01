@@ -64,31 +64,31 @@ function changeContent(c) {
     var source = "";
     switch (c) {
         case "pop":
-            source = "audio_files/pop.webm";
+            source = "audio_files/pop.mp3";
             break;
         case "hiphop":
-            source = "audio_files/hiphop.webm";
+            source = "audio_files/hiphop.mp3";
             break;
         case "latino":
-            source = "audio_files/latino.webm";
+            source = "audio_files/latino.mp3";
             break;
         case "edm":
-            source = "audio_files/edm.webm";
+            source = "audio_files/edm.mp3";
             break;
         case "kpop":
-            source = "audio_files/kpop.webm";
+            source = "audio_files/kpop.mp3";
             break;
         case "classical":
-            source = "audio_files/classical.webm";
+            source = "audio_files/classical.mp3";
             break;
         case "jazz":
-            source = "audio_files/jazz.webm";
+            source = "audio_files/jazz.mp3";
             break;
         case "metal":
-            source = "audio_files/metal.webm";
+            source = "audio_files/metal.mp3";
             break;
         default:
-            source = "audio_files/pop.webm";
+            source = "audio_files/pop.mp3";
     }
 
     if (source != $("#player").attr("src")) { //load the player only if the source changes

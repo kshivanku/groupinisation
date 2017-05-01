@@ -6,7 +6,9 @@ var k = 1;
 socket.on('allUsers', function(allUserData) {
     users = allUserData;
     neighbor = []; //reset all neighbors to none
-    findNearNeighbors();
+    if(latitude != undefined && longitude != undefined){
+      findNearNeighbors();
+    }
 });
 
 function findNearNeighbors() {
@@ -17,9 +19,7 @@ function findNearNeighbors() {
             var long1 = longitude;
             var lat2 = users[i].latitude;
             var long2 = users[i].longitude;
-            if(lat1 && long1 && lat2 && long2){
-              distance = getDistanceFromLatLonInM(lat1, long1, lat2, long2);
-            }
+            distance = getDistanceFromLatLonInM(lat1, long1, lat2, long2);
         } else {
             distance = Infinity;
         }
@@ -90,6 +90,7 @@ function changeContent(c) {
         default:
             source = "audio_files/pop.webm";
     }
+
     if (source != $("#player").attr("src")) { //load the player only if the source changes
         $("#player").attr("src", source);
         $("#playing").css('display', 'block');

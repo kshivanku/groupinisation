@@ -1,4 +1,6 @@
-var userID, userType, latitude, longitude;
+var userID, userType;
+var latitude = undefined;
+var longitude = undefined;
 var socket;
 
 socket = io.connect('https://skf268.itp.io/');
@@ -25,7 +27,6 @@ $(document).ready(function() {
 
     //once user makes his selection
     $('.choice').click(function(){
-
       //set user type
       userType = $(this)[0].id;
 
